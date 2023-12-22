@@ -6,11 +6,12 @@ html_file = browser.get("https://corners.auction.co.kr/corner/categorybest.aspx"
 
 # - 정보 획득
 from selenium.webdriver.common.by import By
-selector_value = "div.mg-list"
+selector_value = "#itembest_T > ul.uxb-img.first > li.first > div"
 browser.find_elements(by=By.CSS_SELECTOR, value=selector_value)
 
 for element_item in element_bundle[10:41]:
     element_title = element_item.find_element(by=By.CSS_SELECTOR, value="div > div.info > em")
     title = element_title.text
     
+delivery = browser.find_element(by=By.CSS_SELECTOR, value="")
 browser.quit()
