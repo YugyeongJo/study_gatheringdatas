@@ -13,7 +13,7 @@ from selenium.webdriver.common.by import By
 selector_value = "div.mnemitem_unit"
 element_bundle = browser.find_elements(by=By.CSS_SELECTOR, value=selector_value)
 
-for element_item in element_bundle:
+for element_item in element_bundle[10:41]:   # list slicing 
     # print(element_item.text)        # 상품 정보들
     # 상품 제목
     element_title = element_item.find_element(by=By.CSS_SELECTOR, value="span.mnemitem_goods_tit")
