@@ -18,7 +18,7 @@ for element_item in element_bundle:
     # 상품 제목
     element_title = element_item.find_element(by=By.CSS_SELECTOR, value="span.mnemitem_goods_tit")
     title = element_title.text
-    # 상품 판매 원가
+    # 상품 판매 원가 (try except 포함)
     try : 
         element_old_price = element_item.find_element(by=By.CSS_SELECTOR, value="div > del > em")
         old_price = element_old_price.text
