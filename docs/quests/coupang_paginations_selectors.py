@@ -14,6 +14,7 @@ pass
 # - 가능 여부에 대한 OK 받음
 # - html 파일 받음(and 확인)
 html = browser.page_source
+
 # print(html)
 
 # - 정보 획득
