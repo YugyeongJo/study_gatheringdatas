@@ -18,3 +18,14 @@ from selenium.webdriver.common.by import By
 
 # 브라우저 종료
 browser.quit()
+
+# *웹 크롤링 동작
+# -(install browser)
+# -set up driver
+# - vrowser(Chrome) 열기
+# -주소 입력 후 Enter
+# -가능 여부에 대한 ok받음
+# -html 파일 받음(and 확인)
+# -정보획득
+# -browser닫기
+
