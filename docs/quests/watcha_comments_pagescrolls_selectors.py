@@ -46,7 +46,7 @@ comments = browser.find_elements(by=By.CSS_SELECTOR, value = "ul > div.css-13j4l
 for i in comments:
     element_writer = i.find_element(by=By.CSS_SELECTOR, value="div.css-eldyae.e10cf2lr1")
     element_rating = i.find_element(by=By.CSS_SELECTOR, value="div.css-31ods0.egj9y8a0 > span")
-    element_contents = i.find_element(by=By.CSS_SELECTOR, value="div.css-10w4kfx.e1hvy88212")
+    element_contents = i.find_element(by=By.CSS_SELECTOR, value="div.css-2occzs.egj9y8a1")
     collection.insert_one({"writer": element_writer.text,
                         "rating": element_rating.text, 
                         "contents": element_contents.text})
