@@ -3,10 +3,10 @@ from pymongo import MongoClient
 mongoClient = MongoClient("mongodb://localhost:27017")
 
 # database 연결
-database = mongoClient["local"]
+database = mongoClient["gatheringdatas"]
 
 # collection 작업
-collection = database['watcha_comments_pagescrolls_selectors']
+collection = database['watcha_comments']
 
 
 # * 웹 크롤링 동작
@@ -30,8 +30,7 @@ from selenium.webdriver.common.keys import Keys
 ## 스크롤 이동
 element_body = browser.find_element(by=By.CSS_SELECTOR, value="body")
 previous_scrollHeight = 0
-# while True :
-for i in range(3):
+while True :
     element_body.send_keys(Keys.END)
     current_scrollHeight = browser.execute_script("return document.body.scrollHeight")
     if previous_scrollHeight >= current_scrollHeight :
@@ -41,15 +40,29 @@ for i in range(3):
     time.sleep(1)
     pass
 
+collection.delete_many({})
 comments = browser.find_elements(by=By.CSS_SELECTOR, value = "ul > div.css-13j4ly.egj9y8a4")
-
+pass
 for i in comments:
-    element_writer = i.find_element(by=By.CSS_SELECTOR, value="div.css-eldyae.e10cf2lr1")
-    element_rating = i.find_element(by=By.CSS_SELECTOR, value="div.css-31ods0.egj9y8a0 > span")
-    element_contents = i.find_element(by=By.CSS_SELECTOR, value="div.css-2occzs.egj9y8a1")
-    collection.insert_one({"writer": element_writer.text,
-                        "rating": element_rating.text, 
-                        "contents": element_contents.text})
+    try : 
+        element_writer = i.find_element(by=By.CSS_SELECTOR, value="div.css-eldyae.e10cf2lr1")
+        element_writer = element_writer.text
+    except : 
+        element_writer = ""
+    try : 
+        element_rating = i.find_element(by=By.CSS_SELECTOR, value="div.css-31ods0.egj9y8a0 > span")
+        element_rating = element_rating.text
+    except : 
+        element_rating = ""
+    try : 
+        element_contents = i.find_element(by=By.CSS_SELECTOR, value="div.css-2occzs.egj9y8a1")
+        element_contents = element_contents.text
+    except : 
+        element_contents = ""
+    collection.insert_one({"writer": element_writer,
+                        "rating": element_rating, 
+                        "contents": element_contents})
+    pass
 
 # 브라우저 종료
 browser.quit()
