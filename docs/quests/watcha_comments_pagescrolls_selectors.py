@@ -22,8 +22,6 @@ browser.get("https://pedia.watcha.com/ko-KR/contents/m53mZg6/comments")
 # - 가능 여부에 대한 OK 받음
 # - html 파일 받음(and 확인)
 html = browser.page_source
-# print(html)
-
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 

@@ -14,7 +14,7 @@ html = browser.page_source
 pass
 # - 정보 획득
 from selenium.webdriver.common.by import By
-
+# browser.find_element(by=By.css_SELECTOR, value="#menuLink84").click()
 element_click = browser.find_element(by=By.CSS_SELECTOR, value="#menuLink84")
 element_click.click()
 
