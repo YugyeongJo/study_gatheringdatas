@@ -27,9 +27,10 @@ pass
 # 상품 4개 선정 리스트화
 time.sleep(3)
 
-item = ["#thisClick_6173429244 > div > a", "#thisClick_6577469889 > div > a", "#thisClick_5925154481 > div > a", "#thisClick_2281264645 > div > a" ]
-for i in item:
-    browser.find_element(by=By.CSS_SELECTOR, value = i).click()    #상품상세페이지 click
+item = browser.find_elements(by=By.CSS_SELECTOR, value = "#bestPrdList > div:nth-child(2) > ul > li > div > a")
+for i in range(11,15):
+    item = browser.find_elements(by=By.CSS_SELECTOR, value = "#bestPrdList > div:nth-child(2) > ul > li > div > a")
+    item[i].click()    #상품상세페이지 click
     time.sleep(3)
 
     element_title = browser.find_element(by=By.CSS_SELECTOR, value="h1.title")
@@ -45,6 +46,9 @@ for i in item:
     
     pass
 
+    documents = collection01.find({"title":element_title.text}, {"_id":1})
+    list_documents = list(documents)
+    pass
     ##상품평
     #정보 획득
     browser.switch_to.frame('ifrmReview')
@@ -79,10 +83,10 @@ for i in item:
         except : 
             element_contents = ""
         pass
-        time.sleep(3)
         
         #DB전송
-        collection02.insert_one({"writer": element_writer,
+        collection02.insert_one({"상품id": list_documents[0]["_id"],
+                            "writer": element_writer,
                             "option": element_option,
                             "grade" : element_grade,
                             "contents": element_contents})
